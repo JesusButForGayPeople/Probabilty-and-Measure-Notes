@@ -1,178 +1,35 @@
-% ======================
-% PACKAGE CONFIGURATION
-% ======================
-\documentclass[12pt]{article}
-\usepackage[utf8]{inputenc} 
-\usepackage{float}
-% Math
-\usepackage{amsmath, amssymb, mathtools}
-\usepackage{cancel}
-\usepackage{needspace}
+\makeatletter
 
-% Graphics and TikZ
-\usepackage{graphicx}
-\usepackage{tikz}
-\usetikzlibrary{calc, positioning, decorations.pathreplacing, arrows.meta}
-\usepackage{environ}
+\@ifpackageloaded{graphicx}{}{\usepackage{graphicx}}
+\@ifpackageloaded{fancyhdr}{}{\usepackage{fancyhdr}}
+\@ifpackageloaded{hyperref}{}{\usepackage{hyperref}}
+\@ifpackageloaded{xcolor}{}{\usepackage{xcolor}}
+\@ifpackageloaded{titlesec}{}{\usepackage{titlesec}}
 
-
-% Layout
-\usepackage{geometry}
-\geometry{margin=0.75in}
-\usepackage{fancyhdr}
-\setlength{\headheight}{16.4pt}        % Fix for fancyhdr header size warning
-\addtolength{\topmargin}{-2.4pt}       % Optional: counteract added header height
-
-% Fonts and styling
-\usepackage[fontsize=14pt]{scrextend}
-\usepackage{anyfontsize}
-\usepackage{bm}
-\usepackage{xfakebold}
-\usepackage{xspace}
-\newcommand{\fbseries}{\unskip\setBold\aftergroup\unsetBold\aftergroup\ignorespaces}
-\newcommand{\setBoldness}[1]{\def\fake@bold{#1}}
-
-\usepackage{stackengine}
-\newcommand{\qed}{%
-  \stackengine{0pt}{%
-    \stackengine{0pt}{%
-      \stackengine{0pt}{%
-        \textbf{QED}%
-      }{%
-        \kern0.1pt\textbf{QED}%
-      }{O}{l}{F}{T}{L}%
-    }{%
-      \kern-0.1pt\textbf{QED}%
-    }{O}{l}{F}{T}{L}%
-  }{%
-    \kern0.2pt\textbf{QED}%
-  }{O}{l}{F}{T}{L}%
-}
-
-\newsavebox{\nosplitbox}
-\NewEnviron{nosplit}{%
-  \setbox\nosplitbox=\vbox{\BODY}%
-  \needspace{\dimexpr\ht\nosplitbox+\dp\nosplitbox+\baselineskip}%
-  \usebox{\nosplitbox}%
-}
-
-
-
-% Lists and layout
-\usepackage{array}
-\usepackage{enumitem}
-\usepackage{wrapfig}
-\usepackage{makecell}
-\usepackage{booktabs}
-
-% Boxes and framing
-\usepackage{mdframed}
-\usepackage[most]{tcolorbox}
-\tcbuselibrary{skins}
-
-% Document structure
-\usepackage{titlesec}
-\usepackage{extramarks} % [?] Only needed if using \extramarks
-\usepackage{caption}    % [?] Only needed if customizing captions
-
-% Colors
-\usepackage[dvipsnames]{xcolor}
-
-% Utility
-\usepackage{pifont}
-\usepackage{silence}
-\usepackage{xparse}
-
-% Hyperlinks (should be last)
-\usepackage{hyperref}
-
-
-% ======================
-% COLOR DEFINITIONS
-% ======================
-\definecolor{mygreen}{RGB}{131, 176, 47}
-\definecolor{textgreen}{RGB}{129, 186, 24}
-\definecolor{myred}{RGB}{195, 30, 74}
-\definecolor{myblue}{RGB}{0, 140, 158}
-\definecolor{myorange}{RGB}{240, 110, 41}
-\definecolor{mygrey}{RGB}{130, 130, 130}
-\definecolor{dark}{HTML}{83B02F}
-\definecolor{light}{HTML}{e1f0c7}
-
-% ======================
-% SPACING ADJUSTMENTS
-% ======================
-\setlength{\abovedisplayskip}{5pt}
-\setlength{\belowdisplayskip}{5pt}
-\setlength{\abovedisplayshortskip}{1pt}
-\setlength{\belowdisplayshortskip}{1pt}
-
-% ======================
-% CUSTOM ENVIRONMENTS
-% ======================
-\newenvironment{answer}{
-  \begin{list}{}{
-    \setlength{\leftmargin}{2cm}
-    \setlength{\rightmargin}{0cm}
-    \setlength{\listparindent}{0cm}
-    \setlength{\itemindent}{0cm}
-    \setlength{\parsep}{0pt}
-  }
-  \item[]
-}{
-  \end{list}
-}
-
-% ======================
-% CUSTOM COMMANDS
-% ======================
-\newcommand{\tikzmark}[1]{\tikz[remember picture, baseline] \node (#1) {};}
-\newcommand{\mathbox}[2]{%
-  \begingroup
-  \setlength{\fboxsep}{4pt}
-  \setlength{\fboxrule}{1.2pt}
-  \color{#1}
-  \fbox{\color{black} $\displaystyle #2$}
-  \endgroup
-}
-\newcommand{\dash}{-\mkern-8mu-}
-\newcommand{\mytitle}{TITLE PLACEHOLDER}
-\newcommand*{\underuparrow}[1]{\ensuremath{\underset{\uparrow}{#1}}}
-
-
-\newcommand{\highlight}[1]{%
-    \textcolor{textgreen}{\fbseries #1}\xspace%
-}
-\newcommand{\elbowarrow}{%
-  \tikz[baseline=-0.5ex, x=0.4ex, y=0.4ex, line width=0.4pt, line join=round]{
-    \def\shaftlen{3}
-    \draw
-      (-0.25,0) -- (-0.25,\shaftlen) -- (1,\shaftlen)
-      -- (1,1) -- (\shaftlen,1)
-      -- (\shaftlen,1.75) -- ({\shaftlen + 1.5},0.5) -- (\shaftlen,-0.75) -- (\shaftlen,0)
-      -- (1,0) -- cycle;
-  }\hspace{0.4em}%
-}
-\newcommand{\tallbar}{\makebox[0pt][r]{\raisebox{-2em}[0pt][0pt]{\rule{0.5pt}{3.3em}}}}
-
-\newcolumntype{N}{|>{\raggedleft\arraybackslash}p{1.5em}} % Step number
-\newcolumntype{S}{|>{\raggedright\arraybackslash}p{0.45\textwidth}} % Statement
-\newcolumntype{J}{|>{\raggedright\arraybackslash}p{0.45\textwidth}|} % Justification
-\newcolumntype{C}{|>{\raggedright\arraybackslash}p{0.45\textwidth}|}  % Conclusion (no vline)
-\newcommand{\btherefore}{\raisebox{-0.65ex}{\(\bullet\)}\kern-0.13ex \raisebox{0.65ex}{\(\bullet\)}\kern-0.13ex \raisebox{-0.65ex}{\(\bullet\)}\kern-0.1em}
-
-% ======================
-% LIST AND SECTION FORMATTING
-% ======================
-\renewcommand{\labelitemii}{$\triangleright$}
-\titleformat{\subsection}[runin]{\normalfont\large\bfseries}{\thesubsection}{1em}{}
-\renewcommand\CancelColor{\color{red}}
+\makeatother
 
 % ======================
 % HEADER CONFIGURATION
 % ======================
+
+% Allows the title of R-markdown Documents to be set from within the document
+\newcommand{\mytitle}{TITLE PLACEHOLDER}
+
+\titleformat{\subsection}[runin]{\normalfont\large\bfseries}{\thesubsection}{1em}{}
+
 \newcommand{\headertext}{}
+
 \newlength{\headertextwidth}
+
+\renewcommand{\headrule}{%
+    \vspace{1pt}
+    \hrule height 0.4pt \vspace{3pt}
+    \rule{0.5\textwidth}{0.4pt} \\[-13pt]
+    \rule{0.25\textwidth}{0.4pt}
+    \vspace{-10pt}
+}
+
+% Command to omit the date if the section label is too long
 \newcommand{\autoscaleheader}[1]{%
     \settowidth{\headertextwidth}{#1}%
     \ifdim\headertextwidth>0.55\textwidth
@@ -184,9 +41,7 @@
     \fi
 }
 
-% ======================
-% FIRST PAGE STYLE
-% ======================
+% First Page Header
 \fancypagestyle{firstpage}{
   \fancyhf{}
   \fancyhead[L]{Aidan J. Wagner}
@@ -200,25 +55,18 @@
   }
 }
 
-% ======================
-% HEADER/FOOTER SETUP
-% ======================
+% nth Page Header
 \pagestyle{fancy}
-\fancyhf{}
-\fancyhead[R]{\thepage}
-\fancyhead[C]{\normalsize \headertext}
-\fancyhead[L]{\today}
-\renewcommand{\headrule}{%
-    \vspace{1pt}
-    \hrule height 0.4pt \vspace{3pt}
-    \rule{0.5\textwidth}{0.4pt} \\[-13pt]
-    \rule{0.25\textwidth}{0.4pt}
-    \vspace{-10pt}
-}
+    \fancyhf{}
+    \fancyhead[R]{\thepage}
+    \fancyhead[C]{\normalsize \headertext}
+    \fancyhead[L]{\today}
+
+
 \fancyfoot{}
 
 % ======================
-% CUSTOM HEADING LOGIC
+%  CUSTOM SECTION COMMANDS
 % ======================
 \makeatletter
 \newcommand{\getcleansection}{%
@@ -283,9 +131,6 @@
     \@UNsubsection{#1}{1.0}%
 }
 
-% ======================
-% MULTIHEADING
-% ======================
 \newcommand{\@multiheading}[3]{%
     \section*{\Large\scalebox{#3}[#3]{#1} \hspace{0.25em} - \textcolor{mygrey}{\large #2}}%
     \vspace{-1em}%
@@ -318,64 +163,3 @@
     \PackageError{multiheading}{Invalid use of \string\multiheading}{Expected two or three arguments.}%
 }
 \makeatother
-
-
-\setlength{\parindent}{0pt}
-
-
-\NewDocumentEnvironment{proofline}{O{0.25em} O{}}{%
-  \begin{list}{}{%
-    \setlength{\leftmargin}{#1+0.25em}%
-    \setlength{\rightmargin}{0pt}%
-  }
-  \item
-  \tcolorbox[
-    blanker, breakable,
-    left=4mm, right=0mm, top=1mm, bottom=1mm,
-    borderline west={1pt}{0mm}{black},
-    before upper=\indent, parbox=false,
-    #2
-  ]
-}{%
-  \endtcolorbox
-  \end{list}
-}
-
-\newcommand{\boxeditem}[1]{%
-  \begin{tcolorbox}[
-    colback=white,
-    colframe=black,
-    boxrule=0.4pt,
-    sharp corners,
-    enhanced,
-    left=4pt, right=4pt, top=2pt, bottom=2pt,
-    box align=base,
-    baseline
-  ]
-  #1
-  \end{tcolorbox}
-}
-
-
-\newcounter{eqgroup}    % manually set this
-\newcounter{eqwithin}[eqgroup]  % resets when eqgroup changes
-
-\renewcommand{\theeqwithin}{\theeqgroup.\arabic{eqwithin}}  % formats the tag
-
-\newcommand{\seteqgroup}[1]{\setcounter{eqgroup}{#1}\setcounter{eqwithin}{0}} % call this when switching groups
-
-\NewEnviron{UNequation}{
-  \vspace{1ex}
-  \refstepcounter{eqwithin}
-  \begin{equation}
-    \tag{\theeqwithin}
-    \scalebox{1.25}[1.25]{ $\displaystyle \BODY$ }
-  \end{equation}
-  \vspace{1ex}
-  
-}
-
-\newcommand{\medstar}{\mathbin{\scalebox{0.5}[0.5]{$\bigstar$}}}
-
-\usepackage{pifont}
-\newcommand{\xmark}{\text{\ding{55}}}%

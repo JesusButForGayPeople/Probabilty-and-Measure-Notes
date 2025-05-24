@@ -1,0 +1,170 @@
+\usepackage[utf8]{inputenc}
+\usepackage[fontsize=14pt]{scrextend}
+
+% Math Packages
+\usepackage{amsmath, amssymb, bm, cancel, mathtools}
+
+% Font & Text Styling Packages
+\usepackage{anyfontsize, pifont, stackengine, xfakebold, xspace}
+
+% Format & Positioning Packages
+\usepackage{caption, float, geometry, mdframed, needspace, titlesec, wrapfig}
+
+% Color & Image Packages
+\usepackage{graphicx, fancyhdr}
+\usepackage[most]{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning, decorations.pathreplacing, arrows.meta}
+
+% Table Styling Packages
+\usepackage{array, booktabs, enumitem, makecell}
+\tcbuselibrary{skins} 
+
+% Scripting Packages
+\usepackage{environ, etoolbox, silence, xparse}
+
+\usepackage{hyperref}
+
+% ======================
+% COLOR DEFINITIONS
+% ======================
+\definecolor{mygreen}{RGB}{131, 176, 47}
+\definecolor{textgreen}{RGB}{129, 186, 24}
+\definecolor{myred}{RGB}{195, 30, 74}
+\definecolor{myblue}{RGB}{0, 140, 158}
+\definecolor{myorange}{RGB}{240, 110, 41}
+\definecolor{mygrey}{RGB}{130, 130, 130}
+\definecolor{dark}{HTML}{83B02F}
+\definecolor{light}{HTML}{e1f0c7}
+
+% ======================
+% SPACING ADJUSTMENTS
+% ======================
+\geometry{margin=0.75in}
+\setlength{\headheight}{16.4pt}        
+\addtolength{\topmargin}{-2.4pt} 
+\setlength{\abovedisplayskip}{5pt}
+\setlength{\belowdisplayskip}{5pt}
+\setlength{\abovedisplayshortskip}{1pt}
+\setlength{\belowdisplayshortskip}{1pt}
+\setlength{\parindent}{0pt}
+\renewcommand{\labelitemii}{$\triangleright$}
+
+% ======================
+% BOXES
+% ======================
+
+\newcommand{\boxeditem}[1]{%
+  \begin{tcolorbox}[colback=white, colframe=black, boxrule=0.4pt, sharp corners, enhanced, left=4pt, right=4pt, top=2pt, bottom=2pt, box align=base, baseline]
+        #1
+  \end{tcolorbox}
+}
+
+\newcommand{\mathbox}[2]{%
+  \begingroup
+  \setlength{\fboxsep}{4pt}
+  \setlength{\fboxrule}{1.2pt}
+  \color{#1}
+  \fbox{\color{black} $\displaystyle #2$}
+  \endgroup
+}
+
+% ======================
+% CUSTOM ENVIRONMENTS
+% ======================
+
+\newenvironment{answer}{
+  \begin{list}{}{
+    \setlength{\leftmargin}{2cm}
+    \setlength{\rightmargin}{0cm}
+    \setlength{\listparindent}{0cm}
+    \setlength{\itemindent}{0cm}
+    \setlength{\parsep}{0pt}
+  }
+  \item[]
+}{
+  \end{list}
+}
+    
+% Custom Equation Tags
+\newcounter{eqgroup}    % manually set this
+\newcounter{eqwithin}[eqgroup]  % resets when eqgroup changes
+\renewcommand{\theeqwithin}{\theeqgroup.\arabic{eqwithin}} 
+\newcommand{\seteqgroup}[1]{\setcounter{eqgroup}{#1}\setcounter{eqwithin}{0}} % call this when switching groups
+
+% Custom Equation Environment
+\NewEnviron{UNequation}{
+  \vspace{1ex}
+  \refstepcounter{eqwithin}
+  \begin{equation}
+    \tag{\theeqwithin}
+    \scalebox{1.25}[1.25]{\ensuremath{\displaystyle \BODY}}
+  \end{equation}
+  \vspace{1ex}
+  
+}
+
+% Custom Proof Environment
+\NewEnviron{proofline}{%
+  \begin{list}{}{%
+    \setlength{\leftmargin}{0.5em}%
+    \setlength{\rightmargin}{0pt}%
+  }%
+  \item
+  \tcolorbox[
+    blanker, breakable,
+    left=4mm, right=0mm, top=1mm, bottom=1mm,
+    borderline west={1pt}{0mm}{black},
+    before upper=\indent, parbox=false,
+  ]%
+  \BODY%
+  \endtcolorbox%
+  \end{list}%
+}
+
+% ======================
+% CUSTOM SYMBOL COMMANDS
+% ======================
+\newcommand{\dash}{-\mkern-8mu-}
+
+\newcommand{\medstar}{\mathbin{\scalebox{0.5}[0.5]{ $\bigstar$ }}}
+
+\newcommand{\xmark}{\text{\ding{55}}}%
+
+\newcommand*{\underuparrow}[1]{\ensuremath{\underset{\uparrow}{#1}}}
+
+\newcommand{\tallbar}{\makebox[0pt][r]{\raisebox{-2em}[0pt][0pt]{\rule{0.5pt}{3.3em}}}}
+
+\newcommand{\elbowarrow}{%
+  \tikz[baseline=-0.5ex, x=0.4ex, y=0.4ex, line width=0.4pt, line join=round]{
+    \def\shaftlen{3}
+    \draw
+      (-0.25,0) -- (-0.25,\shaftlen) -- (1,\shaftlen)
+      -- (1,1) -- (\shaftlen,1)
+      -- (\shaftlen,1.75) -- ({\shaftlen + 1.5},0.5) -- (\shaftlen,-0.75) -- (\shaftlen,0)
+      -- (1,0) -- cycle;
+  }\hspace{0.4em}%
+}
+
+\newcommand{\qed}{\stackengine{0pt}{\stackengine{0pt}{\stackengine{0pt}{%
+        \textbf{QED}}{\kern0.1pt%
+            \textbf{QED}}{O}{l}{F}{T}{L}}{\kern-0.1pt%
+                \textbf{QED}}{O}{l}{F}{T}{L}}{\kern0.2pt%
+                    \textbf{QED}}{O}{l}{F}{T}{L}%
+    }
+
+\newcommand{\tikzmark}[1]{\tikz[remember picture, baseline] \node (#1) {};}
+
+% ======================
+% CUSTOM FORMATTING COMMANDS
+% ======================
+
+\renewcommand\CancelColor{\color{red}}
+
+\newcommand{\highlight}[1]{\textcolor{textgreen}{\fbseries #1}\xspace}
+
+\newcommand{\fbseries}{\unskip\setBold\aftergroup\unsetBold\aftergroup\ignorespaces}
+
+\newcommand{\setBoldness}[1]{\def\fake@bold{#1}}
+
