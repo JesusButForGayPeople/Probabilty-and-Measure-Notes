@@ -253,14 +253,14 @@ let $I_k = (a_k, b_k]$ be a finite or infinite sequence of bounded intervals (th
 	To begin, we can observe that \textbf{iii.} follows from \textbf{i.} \& \textbf{ii.} so we just need to prove the first two claims:\\
 	{\footnotesize \textbf{Proof of i:}}
 	\vspace{-1.5ex}
-	\begin{proofline}[1em]
+	\begin{proofline}
 		{\footnotesize \textbf{Finite Case:}} Assume that there are $n$ intervals. The result clearly holds if $n=1$, we assume that it holds for $n-1$. If $a_n$ is the largest among $a_1,...,a_n$, then $\bigcup_{k=1} I_{n-1}(a_k, b_k] \subset (a, a_n)$, so that $\sum_{k=1}^{n-1}(b_k-a_k) \leq a_n -a $ by induction, and thus $\sum_{k=1}^{n}(b_k-a_k) \leq a_n -a + (b_n-a_n) \leq b-a$.\\[5pt]
 		{\footnotesize \textbf{Infinite Case:}} If there are an infinite amount of intervals, we just showed that any finite subcollection must satisfy \textbf{i.}, as a result $\sum_{k=1}^{n}(b_k-a_k) \leq b-a$, and since $n$ is arbitrary this holds in the infinite case.
 	\end{proofline}
 	    
 	{\footnotesize \textbf{Proof of ii:}}
 	\vspace{-1.5ex}
-	\begin{proofline}[1em]
+	\begin{proofline}
 		{\footnotesize \textbf{Finite Case:}} Assume that \textbf{ii.} holds for the case of $n-1$ intervals and that $(a,b] \subset \bigcup_{k=1}^n(a_k,b_k]$ where $a_n < b \leq b_n$. If $a_n \leq a$, then the result clearly holds. Otherwise, $(a,a_n] \subset \bigcup_{k=1}^{n-1}(a_k, b_k]$, so that $\sum_{k=1}^{n-1}(b_k-a_k) \geq a_n - a$ by induction. Thus, $\sum_{k=1}^n(b_k-a_k) \geq (a_k-a)+(b_n-a_n) \geq b-a$. The finite case follows from this by induction.\\[5pt]
 		{\footnotesize \textbf{Infinite Case:}} Assume that  $(a,b] \subset \bigcup_{k=1}^{\infty}(a_k, b_k]$. If $0 < \varepsilon < b - a$, the open intervals $(a_k, b_k + \varepsilon2^{-k})$ cover the closed interval $[a + \varepsilon, b]$, and it follows by the \textit{Heine-Borel theorem} that $(a + \varepsilon, b] \subset \bigcup_{k=1}^n(a_k, b_k + \varepsilon2^{-k}]$, meaning that by the finite case we have $b - (a + \varepsilon) \leq \sum_{k=1}^n(b_k + \varepsilon 2^{-k}-a_k) \leq \sum_{k=1}^{\infty}(b_k-a_k) + \varepsilon$. Thus, since $\varepsilon$ is arbitrarily small the infinite case follows.
 			\end{proofline}

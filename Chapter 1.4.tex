@@ -39,6 +39,7 @@ If $A_1,A_2,...$ partition $\Omega$, then
 
 For fixed $A$ the function $P(B|A)$ defines a probability measure as $B$ varies over $\mathcal{F}$.
 
+\needspace{6\baselineskip}
 \UNsubsection{Limit Sets} \quad
 
 For a sequence \( A_1, A_2, \ldots \) of sets, define the sets
@@ -51,7 +52,28 @@ For a sequence \( A_1, A_2, \ldots \) of sets, define the sets
 \boldsymbol{\liminf}_{n} A_n = \bigcup_{n=1}^{\infty} \bigcap_{k=n}^{\infty} A_k. \quad \scalebox{0.8}[0.8]{$\textbf{(Limit Inferior of }\boldsymbol{A_n)}$}
 \end{UNequation}
 
-\newpage
+\textbf{Example:} Consider the functions \( d_n(\omega) \) defined on the unit interval by the dyadic expansion (1.1), and let \( \boldsymbol{\ell}(\omega) \) be the length of the run of 0's starting at \( d_n(\omega) \):  
+\[
+\boldsymbol{\ell}_n(\omega) = k \ \text{if both} \ 
+\begin{array}{l}
+    d_n(\omega) = \cdots = d_{n+k-1}(\omega) = 0\\
+    \text{and} \quad d_{n+k}(\omega) = 1
+\end{array} \ \Rightarrow\  \boldsymbol{\ell}_n(\omega) = 0 \text{ if } d_n(\omega) = 1
+\]  
+Probabilities can be computed using the following formula:
+\begin{UNequation}
+    P\left\{ \omega : d_i(\omega) = u_i,\ i = 1, \ldots, n \right\} = \frac{1}{2^n}
+\end{UNequation} 
+
+Since $\{ \omega : \boldsymbol{\ell}_n(\omega) = k \}$ is a union of \( 2^{n-1} \) disjoint intervals of length \( 2^{-n-k} \), it lies in \( \mathcal{F} \) and has probability \( 2^{-k-1} \). Therefore,  \(\displaystyle \{ \omega : \boldsymbol{\ell}_n(\omega) \geq r \} = \{ \omega : d_i(\omega) = 0,\, n \leq i < n + r \}\)  
+lies also in \( \mathcal{F} \) and has probability $\sum_{k \geq r} 2^{-k-1}$.
+
+\begin{equation}
+P\left( \omega : \boldsymbol{\ell}_n(\omega) \geq r \right) = 2^{-r}.
+\tag{4.7}
+\end{equation}
+
+If \( A_n \) is the event in (4.7), then (4.4) is the set of \( \omega \) such that \( l_n(\omega) \geq r \) for infinitely many \( n \), or, \( n \) being regarded as a time index, such that \( \boldsymbol{\ell}_n(\omega) \geq r \) \textit{infinitely often}.
 
 \UNsubsection{Independent Events} \quad
 
@@ -72,3 +94,19 @@ for $2\leq j \leq n$ and $1 \leq k_1 < \cdots < k_j \leq n$. Reordering the sets
         \phantom{for }P(A_1\cap A_2 \cap A_3)= P(A_1)P(A_2)P(A_3)
         \end{cases}
 \end{UNequation}
+
+\vspace{5pt}
+
+\textbf{Theorem 4.2: } If $\mathcal{A}_1, ..., \mathcal{A}_n$ are independent and each $\mathcal{A}_i$ is a $\pi$-system, them, $\sigma(\mathcal{A}_1),...,\sigma\mathcal{A}_n$ are independent.\\
+
+\textbf{Proof:}
+\vspace{-1ex}
+\begin{proofline}
+	Let $\mathcal{B}_i$ be the class $\mathcal{A}_i$ augmented by $\Omega$. Then for each $\mathfrak{B}_i$ is a $\pi$-system, then the independence hypothesis holds if $B_i \in \mathfrak{B}_i, \ i=1,...,n$. For fixed sets $B_2,...,B_n$ lying respectively in $\mathfrak{B}_2,...,\mathfrak{B}_n$, let $\mathcal{L}$ be the class of $\mathcal{F}$-sets $B_1$ for which the hypothesis of independence holds. Then $\mathcal{L}$ is a $\lambda$-system containing the $\pi$-system $\mathfrak{B}_1$ and hence containing $\sigma(\mathfrak{B}_1)=\sigma(\mathcal{A}_1$. Therefore, they are independent if $B_1, B_2, ..., B_n$ lie respectively in $\sigma(\mathcal{A}_1), \mathfrak{B}_2,...,\mathfrak{B}_n$, which means that $\sigma(\mathcal{A}_1), \mathcal{A}_2,...,\mathcal{A}_n$ are independent. Clearly, the argument holds for any other choice of index that is less than or equal to $n$. \hfill \qed
+\end{proofline}
+
+\elbowarrow \textbf{Corollary 1: } If $\mathcal{A}_{\theta}$, $\theta \in \Theta$ are independent and each $\mathcal{A}_{\theta}$ is a $\pi$-system, then $\sigma(\mathcal{A}_{\theta})$, $\theta \in \Theta$, are independent.
+
+\UNsubsection{Subfields} \quad
+
+\newpage
