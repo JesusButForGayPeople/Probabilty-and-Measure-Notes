@@ -288,7 +288,7 @@ In other words, let $P$ be a probability measure on a field $\mathbb{F}_0$ of su
         \textbf{$\boldsymbol{\mathcal{L}_A}$ is a $\boldsymbol{\lambda}$-system}:
         \vspace{-1ex}
         \begin{proofline}
-             \begin{itemize}[nosep]
+             \begin{itemize}[topsep=0pt, itemsep=-3pt, itemindent=1em]
              \item[$\boldsymbol{\lambda.}$\textbf{i}:] For each $A$, let $\mathcal{L}_A$ be the class of sets $B$ such that $A\cap B \in \mathcal{L}_0$. If $A$ is assumed to lie in $\mathcal{P}$, or even if $A$ is merely assumed to lie in $\mathcal{L}_0$, then $\mathcal{L}_A$ is a $\lambda$-system; $A\cap \Omega = A \in \mathcal{L}_0$ by the assumption. \quad \scalebox{1.75}[1.75]{$\checkmark$}
              \item[$\boldsymbol{\lambda.}$\textbf{ii}$\boldsymbol{'}$:] If $B_1, B_2 \in \mathcal{L}_A$ and $B_1 \subset B_2$ then the  $\lambda$-system $\mathcal{L}_0$ contains $A\cap B_1$ and $A\cap B_2$ and hence it contains the proper difference $(A \cap B_2)-(A\cap B_1)=A\cap (B_2-B_1)$, so that $\mathcal{L}_A$ contains $B_2-B_1$.  \quad \scalebox{1.75}[1.75]{$\checkmark$}
              \item[$\boldsymbol{\lambda.}$\textbf{iii}:] If $B_n$ are disjoint $\mathcal{L}_A$-sets, then $\mathcal{L}_0$ contains the disjoint sets $A \cap B_n$ and hence $\mathcal{L}_0$ contains their union $A\cap(\bigcup_n  B_n)$.  \quad \scalebox{1.75}[1.75]{$\checkmark$}
@@ -402,14 +402,14 @@ A class $\mathcal{M}$ of subsets of $\Omega$ is \textbf{Monotone} if it is close
     \node at (0,2.75) {
       \textbf{Intervals}\\
       \textcolor{myred}{\textbf{Not}} a \( \sigma \)-algebra \scalebox{1.25}[1.25]{\textcolor{myred}{\xmark}}\\
-      \( I(I) = \mu^*(I) = \mu(I) \)
+      \( I(I) = \mu^{\medstar}(I) = \mu(I) \)
     };
     
     % Borel Sets
     \node at (0,0.25) {
       \( \mathcal{B} \): \textbf{Borel Sets}\\
       \( \sigma \)-algebra \scalebox{1.25}[1.25]{\textcolor{mygreen}{\checkmark}}\\
-      \( \mu(E) = \mu^*(E) \)\\
+      \( \mu(E) = \mu^{\medstar}(E) \)\\
       \( \mu \) countably additive \scalebox{1.25}[1.25]{\textcolor{mygreen}{\checkmark}}
     };
     
@@ -417,7 +417,7 @@ A class $\mathcal{M}$ of subsets of $\Omega$ is \textbf{Monotone} if it is close
     \node at (0,-2.25) {
       \( \mathcal{L} \): \textbf{Lebesgue Measurable Sets}\\
       \( \sigma \)-algebra  \scalebox{1.25}[1.25]{\textcolor{mygreen}{\checkmark}}\\
-      \( \mu(E) = \mu^*(E) \)\\
+      \( \mu(E) = \mu^{\medstar}(E) \)\\
       \( \mu \) countably additive \scalebox{1.25}[1.25]{\textcolor{mygreen}{\checkmark}}
     };
     
@@ -425,12 +425,30 @@ A class $\mathcal{M}$ of subsets of $\Omega$ is \textbf{Monotone} if it is close
     \node at (0,-4.675) {
       \( 2^{\mathbb{R}} \): \textbf{all subsets of \( \mathbb{R} \)}\\
       \( \sigma \)-algebra \scalebox{1.25}[1.25]{\textcolor{mygreen}{\checkmark}}\\
-      \( \mu^*(E) \) \textcolor{myred}{\textbf{Not}} countably additive. \scalebox{1.25}[1.25]{\textcolor{myred}{\xmark}}
+      \( \mu^{\medstar}(E) \) \textcolor{myred}{\textbf{Not}} countably additive. \scalebox{1.25}[1.25]{\textcolor{myred}{\xmark}}
     };
     
     \end{tikzpicture}
     \end{center}
+
+    \vspace{-1ex}
+    \begin{itemize}
+      \setlength\itemsep{0.25em}
+      \item[$\Rightarrow$] \textbf{Intervals:} $\mu^\star(I) = \mu(I)$ for any interval $I$, since intervals are Lebesgue measurable and the outer measure agrees with the measure.
+      
+      \item[$\Rightarrow$] \textbf{Borel Sets $\mathcal{B}$:} Sets generated from open intervals and are measurable.
+        \begin{itemize}[nosep]
+        \item[] $\mu(E) = \mu^\star(E)$ for all $E \in \mathcal{B} \quad \Rightarrow \quad$ Countable Additivity Holds.
+      \end{itemize}
     
+      \item[$\Rightarrow$] \textbf{Lebesgue Measurable Sets $\mathcal{L}$:} Sets satisfying Carathéodory’s criterion:
+        \begin{itemize}[nosep]
+            \item[] \quad $\mu^\star(A) = \mu^\star(A \cap E) + \mu^\star(A \setminus E), \,\quad \forall A \subseteq \mathbb{R}$. Then $\mu^\star(E) = \mu(E)$.
+        \end{itemize}
+        \phantom{aa}For such sets $E$, the outer measure $\mu^\star(E)$ coincides with the Lebesgue\\
+        \phantom{aa}measure $\mu(E)$.
+      \item[$\Rightarrow$] \textbf{$2^{\mathbb{R}}$ (all subsets of $\mathbb{R}$):} $\mu^\star(E)$ is defined for every $E$, but many are not measurable. Countable additivity fails for non-measurable sets.
+    \end{itemize}
 
     \newpage
     

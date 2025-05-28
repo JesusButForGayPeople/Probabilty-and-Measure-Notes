@@ -1,18 +1,20 @@
 \UNsection{1.2 - Probability Measures}
 \seteqgroup{2}
-\UNsubsection{Spaces and Fields} \quad 
+\UNsubsection{Spaces, Semi-Rings, Rings, and Fields} \quad 
 
 
 Let $\Omega$ be an arbitrary \textbf{space} or set of points $\omega$. As it pertains to probability, $\Omega$ is the set of all possible outcomes $\omega$; a subset of $\Omega$ is an \textbf{event} and an element $\omega$ of $\Omega$ is a \textbf{sample point}. \\[10pt]
-This definition is just too broad to do anything with in it's current form. Instead, we are interested in certain \textbf{classes} of sets that have special properties that allow us to actually accomplish something. A set that is part of a given class $\mathcal{F}$ is said to be \textbf{measurable} over $\mathcal{F}$. Specifically, if we want to systematize the kinds of problems presented in 1.1 we are interested in the class of sets that contains the intervals and is closed under the formation of countable unions and intersections.\\[10pt]
+This definition is just too broad to do anything with in it's current form. Instead, we are interested in certain \textbf{classes} of sets that have special properties that allow us to actually accomplish something. A set that is part of a given class $\mathcal{F}$ is said to be \textbf{measurable} over $\mathcal{F}$. Specifically, if we want to systematize the kinds of problems presented in 1.1 we are interested in the class of sets that contains the intervals and is closed under the formation of countable unions and intersections.
 
-A collection of subsets $\mathcal{F}$ on $\Omega$ is called a \textbf{Semiring} if it satisfies the following three conditions:
+\vspace{2ex}
+
+A collection of subsets $\mathcal{F}$ on $\Omega$ is called a \textbf{Semi-ring} if it satisfies the following three conditions:
 \begin{enumerate}[label=\textbf{\roman*.}, topsep=0pt, itemsep=-3pt]
     \item $\emptyset \in \mathcal{F}$
     \item for any $A,B\in \mathcal{F}$, $A\cap B \in \mathcal{F}$
     \item for any $A,B\in \mathcal{F}$, $B \setminus A = \bigcup c_i$ where $c_i \in \mathcal{F}$ 
 \end{enumerate}
-\vspace{10pt}
+\vspace{2ex}
 A collection of subsets $\mathcal{F}$ on $\Omega$ is called a \textbf{Ring} if it satisfies the following three conditions:
 \vspace{-10pt}
 \[

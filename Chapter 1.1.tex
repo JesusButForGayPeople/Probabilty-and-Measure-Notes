@@ -20,14 +20,12 @@ That is basically just a really fancy way of saying it is an infinite sequence o
     \includegraphics[width=\linewidth]{coinflip.png}
 \end{figure}
 
+\needspace{2\baselineskip}
 Which yields the following partial sum:
-
-
 \vspace{-7ex} \begin{UNequation}
 	\hspace{5cm}
 	s_n(\omega) = \sum_{i=1}^{n} r_i(\omega).
 \end{UNequation}
-\vspace{-2ex}
 If \( f(\omega) \) is a step function taking value \( c_j \) in the interval \( (x_{j-1}, x_j] \), where \( 0 = x_0 < x_1 < \cdots < x_k = 1 \), then its integral in the sense of Riemann has the value
 \vspace{-2ex}
 \begin{UNequation}
@@ -78,6 +76,7 @@ a finite union of intervals, and
 
 That is, the probability that the number of 1s in the sequence is greater than a number $\alpha$ is less than or equal to 1 over $\alpha$ times the expected number of 1s in the sequence.\\
 \textbf{Proof: }
+\vspace{-1ex}
 \begin{proofline}
     The set in question is the union of the intervals \( (x_{i-1}, x_i] \) for which \( c_i \geq a \). If \( \sum' \) denotes summation over those \( i \) satisfying \( c_i \geq a \), then
     \begin{UNequation}
@@ -87,11 +86,16 @@ That is, the probability that the number of 1s in the sequence is greater than a
     \begin{UNequation}
     \begin{aligned}
     \int_0^1 f(\omega)\, d\omega &= \sum_{i=1}^k c_i(x_i - x_{i-1}) \geq \mathop{\sum\nolimits'}_{j=1} c_i(x_i - x_{i-1})\\
-    &\geq \sum\nolimits' a(x_i - x_{i-1}).    
+    &\geq \sum\nolimits' a(x_i - x_{i-1}).
     \end{aligned}
     \end{UNequation}
+
+    \vspace{-8ex}
+    
     \hfill \qed
 \end{proofline}
+
+
 
 
 \UNsubsection{The Strong Law of Large Numbers} \quad
@@ -113,10 +117,10 @@ An important consequence of this is that a set consisting of a single point is c
 
 With these preliminaries in place, we can now move on to defining and proving our next theorem.
 
-
+\needspace{10\baselineskip}
 \UNsubsection{Borel's Normal Number Theorem} \quad
 
-\textbf{Theorem 1.2:} The set of normal numbers has negligible complement.\\[-10pt]
+\textbf{Theorem 1.2:} The set of normal numbers has negligible complement.
 
 \textbf{Proof:} 
 \begin{proofline}
